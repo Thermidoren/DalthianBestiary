@@ -1,0 +1,16 @@
+[
+{
+  "modid": "dalthianbestiary",
+  "name": "Dalthian Bestiary",
+  "description": "Mod made for the Dalthian RP server!",
+  "version": "1.0.0",
+  "mcversion": "1.12.2",
+  "url": "https://github.com/sa-shiro/Minecraft-Forge-1.12.2-BaseMod",
+  "updateUrl": "",
+  "authorList": ["Densetsuuu"],
+  "credits": "Densetsuuu",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

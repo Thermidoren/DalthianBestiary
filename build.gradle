@@ -101,3 +101,7 @@ publishing {
     }
 }
 sourceSets { main { output.resourcesDir = output.classesDir } }
+
+configurations.configureEach {
+    exclude group: "net.minecraftforge", module: "mergetool"
+}

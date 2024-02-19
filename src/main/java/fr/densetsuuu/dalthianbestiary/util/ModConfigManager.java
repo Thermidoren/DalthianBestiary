@@ -25,7 +25,7 @@ public class ModConfigManager {
 
     public static void WorldGenerationConfig(FMLInitializationEvent event) {
         // Creating a new Configuration file
-        Configuration config = new Configuration(new File("config/basemod/world.cfg"));
+        Configuration config = new Configuration(new File("config/dalthianbestiary/world.cfg"));
         // function to load our config (very important!)
         config.load();
         // Adding items to our config with: Category, Name of the item, Default value || Example of how it will look:

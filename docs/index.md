@@ -1,4 +1,4 @@
-# Minecraft Forge 1.12.2 BaseMod
+# Minecraft Forge 1.12.2 dalthianbestiary
  This is a Base Version of a basic Forge Mod (1.12.2)
  It was programmed using the latest IntelliJ IDEA version (you can just import it to IntelliJ by selecting the "build.gradlew"
  To be sure that everything is working properly, be sure to run the startDecompWorkspace task (locatable at the right side of IntelliJ, to start Minecraft, run the task startClient)
@@ -9,13 +9,13 @@
   ## Renaming your Mod 
   (Intellij may also work the same way for eclipse, but not tested)
   
-  To rename your mod, right click the Project Root (Minecraft-Forge-1.12.2-BaseMod) and click "Replace in Path" and search for fr.densetsuuu.dalthianbestiary and replace it with the name of your mod! (you may want to follow name conventions)
-  then do the same step again, but just with "basemod" <- your mod ID, again change it to the mod ID your mod should have. 
+  To rename your mod, right click the Project Root (Minecraft-Forge-1.12.2-dalthianbestiary) and click "Replace in Path" and search for fr.densetsuuu.dalthianbestiary and replace it with the name of your mod! (you may want to follow name conventions)
+  then do the same step again, but just with "dalthianbestiary" <- your mod ID, again change it to the mod ID your mod should have. 
   After you've done it, you also need to change the directory names. - You can do that directly inside of IntelliJ, just right click the folder /src/main/java/fr.densetsuuu.dalthianbestiary and use "Refractor -> Rename..."
   ```
-change those directory to what you set in the previous step! (fr.densetsuuu.dalthianbestiary -> com/basemod/base)
-/src/main/java/com/basemod
-/src/main/java/com/basemod/base
+change those directory to what you set in the previous step! (fr.densetsuuu.dalthianbestiary -> com/dalthianbestiary/base)
+/src/main/java/com/dalthianbestiary
+/src/main/java/com/dalthianbestiary/base
 change this directory to the mod ID you've set!
 /resource/assets/testmod
 ```
@@ -50,15 +50,15 @@ public static final Block ORE_TIN = new BlockBase("ore_tin", Material.IRON);
   
   .json files for blocks: 
   ```
-/resources/assets/basemod/blockstates/block_name.json
-/resources/assets/basemod/models/block/block_name.json
-/resources/assets/basemod/models/item/block_name.json
+/resources/assets/dalthianbestiary/blockstates/block_name.json
+/resources/assets/dalthianbestiary/models/block/block_name.json
+/resources/assets/dalthianbestiary/models/item/block_name.json
 ```
 .json files for Items:
 ```
-/resources/assets/basemod/models/item/item_name.json
+/resources/assets/dalthianbestiary/models/item/item_name.json
 ```
-To name your Items / Blocks etc you need to edit the /resource/assets/basemod/lang/en_us.lang file.
+To name your Items / Blocks etc you need to edit the /resource/assets/dalthianbestiary/lang/en_us.lang file.
   ## World Generation
   To add / modify the World Generation, just modify the /world/WorldGen.java class
   

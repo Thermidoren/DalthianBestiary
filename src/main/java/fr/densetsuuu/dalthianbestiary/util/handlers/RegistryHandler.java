@@ -1,9 +1,11 @@
 package fr.densetsuuu.dalthianbestiary.util.handlers;
 
 import fr.densetsuuu.dalthianbestiary.init.ModBlocks;
+import fr.densetsuuu.dalthianbestiary.init.ModEntities;
 import fr.densetsuuu.dalthianbestiary.init.ModItems;
 import fr.densetsuuu.dalthianbestiary.util.IHasModel;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;

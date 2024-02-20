@@ -29,7 +29,8 @@ public class ModConfigManager {
         // function to load our config (very important!)
         config.load();
         // Adding items to our config with: Category, Name of the item, Default value || Example of how it will look:
-        /**
+
+        /*
          * worldgen {
          *      B:"Copper Ore"=true
          * }

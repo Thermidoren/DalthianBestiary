@@ -22,7 +22,7 @@ public class ModTab extends CreativeTabs {
     @SideOnly(Side.CLIENT)
     @Override
     public ItemStack getTabIconItem() {
-        return new ItemStack(ModItems.INGOT_TIN);
+        return null;
     }
 
 }

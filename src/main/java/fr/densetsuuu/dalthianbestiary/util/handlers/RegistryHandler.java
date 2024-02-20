@@ -1,50 +1,33 @@
 package fr.densetsuuu.dalthianbestiary.util.handlers;
 
-import fr.densetsuuu.dalthianbestiary.init.ModBlocks;
-import fr.densetsuuu.dalthianbestiary.init.ModEntities;
-import fr.densetsuuu.dalthianbestiary.init.ModItems;
-import fr.densetsuuu.dalthianbestiary.util.IHasModel;
-import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import fr.densetsuuu.dalthianbestiary.entities.SaccageurEntity;
+import fr.densetsuuu.dalthianbestiary.util.Resource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-@EventBusSubscriber
+@EventBusSubscriber(modid = Resource.MOD_ID)
 public class RegistryHandler {
 
-    /**
-     * Function to register all Mod Items
-     */
-    @SubscribeEvent
-    public static void onItemRegister(RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(ModItems.ITEMS.toArray(new Item[0]));
-    }
 
-    /**
-     * Function to register all Mod Blocks
-     */
-    @SubscribeEvent
-    public static void onBlockRegister(RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll(ModBlocks.BLOCKS.toArray(new Block[0]));
-    }
+    private static final Logger LOGGER = LogManager.getLogger(Resource.MOD_ID + " Event Subscriber");
 
-    /**
-     * Registering the Models for Mod Items and Mod Blocks
-     */
     @SubscribeEvent
-    public static void onModelRegister(ModelRegistryEvent event) {
-        for (Item item : ModItems.ITEMS) {
-            if (item instanceof IHasModel) {
-                ((IHasModel) item).registerModels();
-            }
-        }
-        for (Block block : ModBlocks.BLOCKS) {
-            if (block instanceof IHasModel) {
-                ((IHasModel) block).registerModels();
-            }
-        }
+    public static void onEntitiesRegister(RegistryEvent.Register<EntityEntry> event) {
+
+        event.getRegistry().registerAll(
+                EntityEntryBuilder.create()
+                        .entity(SaccageurEntity.class)
+                        .id(new ResourceLocation(Resource.MOD_ID, "saccageur"), 0)
+                        .name("saccageur")
+                        .tracker(80, 3, true)
+                        .build()
+        );
+        LOGGER.debug("Registered entities");
     }
 }

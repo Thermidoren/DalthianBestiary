@@ -1,8 +1,0 @@
-{
-  "minecraft:recipes/food/bread": {
-    "criteria": {
-      "has_wheat": "2024-02-20 14:37:22 +0100"
-    },
-    "done": true
-  }
-}

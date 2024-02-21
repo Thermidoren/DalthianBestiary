@@ -45,7 +45,7 @@ Stacktrace:
 
 -- Entity being rendered --
 Details:
-	Entity Type: dalthianbestiary:saccageur (fr.densetsuuu.dalthianbestiary.entities.SaccageurEntity)
+	Entity Type: dalthianbestiary:saccageur (fr.densetsuuu.dalthianbestiary.entities.EntitySaccageur)
 	Entity ID: 457
 	Entity Name: entity.saccageur.name
 	Entity's Exact location: -237.47, 64.00, 248.03

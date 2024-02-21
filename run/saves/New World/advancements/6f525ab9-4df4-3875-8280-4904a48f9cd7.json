@@ -1,0 +1,14 @@
+{
+  "minecraft:recipes/food/bread": {
+    "criteria": {
+      "has_wheat": "2024-02-20 14:39:33 +0100"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "taiga_hills": "2024-02-20 14:39:46 +0100"
+    },
+    "done": false
+  }
+}

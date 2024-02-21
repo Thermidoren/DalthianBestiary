@@ -1,6 +1,6 @@
 package fr.densetsuuu.dalthianbestiary.util.handlers;
 
-import fr.densetsuuu.dalthianbestiary.entities.SaccageurEntity;
+import fr.densetsuuu.dalthianbestiary.entities.EntitySaccageur;
 import fr.densetsuuu.dalthianbestiary.util.Resource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
@@ -17,12 +17,13 @@ public class RegistryHandler {
 
     private static final Logger LOGGER = LogManager.getLogger(Resource.MOD_ID + " Event Subscriber");
 
+    @SuppressWarnings("unused")
     @SubscribeEvent
     public static void onEntitiesRegister(RegistryEvent.Register<EntityEntry> event) {
 
         event.getRegistry().registerAll(
                 EntityEntryBuilder.create()
-                        .entity(SaccageurEntity.class)
+                        .entity(EntitySaccageur.class)
                         .id(new ResourceLocation(Resource.MOD_ID, "saccageur"), 0)
                         .name("saccageur")
                         .tracker(80, 3, true)

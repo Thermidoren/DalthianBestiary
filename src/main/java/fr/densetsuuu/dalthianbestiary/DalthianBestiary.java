@@ -1,15 +1,12 @@
 package fr.densetsuuu.dalthianbestiary;
 
-import fr.densetsuuu.dalthianbestiary.entities.SaccageurEntity;
+import fr.densetsuuu.dalthianbestiary.entities.EntitySaccageur;
 import fr.densetsuuu.dalthianbestiary.init.ModTab;
 import fr.densetsuuu.dalthianbestiary.proxy.CommonProxy;
 import fr.densetsuuu.dalthianbestiary.renderer.SaccageurGeoRenderer;
 import fr.densetsuuu.dalthianbestiary.util.ModConfigManager;
 import fr.densetsuuu.dalthianbestiary.util.Resource;
-import fr.densetsuuu.dalthianbestiary.util.handlers.RegistryHandler;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -18,7 +15,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.logging.log4j.Logger;
@@ -58,6 +54,6 @@ public class DalthianBestiary {
     @SideOnly(Side.CLIENT)
     @EventHandler
     public static void registerRenderers(FMLPreInitializationEvent event) {
-        RenderingRegistry.registerEntityRenderingHandler(SaccageurEntity.class, SaccageurGeoRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntitySaccageur.class, SaccageurGeoRenderer::new);
     }
 }

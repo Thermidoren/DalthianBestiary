@@ -23,6 +23,7 @@ public class ModConfigManager {
     public static int tinSpawnTries;
     public static int tinVeinSize;
 
+    @SuppressWarnings("unused")
     public static void WorldGenerationConfig(FMLInitializationEvent event) {
         // Creating a new Configuration file
         Configuration config = new Configuration(new File("config/dalthianbestiary/world.cfg"));

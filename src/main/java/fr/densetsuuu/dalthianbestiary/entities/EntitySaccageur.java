@@ -1,11 +1,9 @@
 package fr.densetsuuu.dalthianbestiary.entities;
 
-import fr.densetsuuu.dalthianbestiary.entities.ai.EntityAISaccageurAttack;
-import net.minecraft.client.Minecraft;
+import fr.densetsuuu.dalthianbestiary.entities.ai.EntityAIDalthianAttack;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.*;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import software.bernie.geckolib3.core.AnimationState;
@@ -21,7 +19,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimationTickable {
 
-    private int attackTimer = 0;
     private boolean isHowlingInProgress = false;
 
     private final AnimationFactory factory = new AnimationFactory(this);
@@ -30,8 +27,22 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
         this.setSize(2F, 3F);
     }
 
+    //#region Geckolib
+    @Override
+    public void registerControllers(AnimationData data) {
+        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "attackController", 0, this::attackPredicate));
+        data.addAnimationController(new AnimationController<>(this, "howlingController", 0, this::howlingPredicate));
+    }
+
+    @Override
+    public AnimationFactory getFactory() {
+        return factory;
+    }
+    //#endregion
 
     //#region Predicates
+
     private <E extends IAnimatable> PlayState predicate(AnimationEvent<E> event) {
         if (event.isMoving()) {
             event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.saccageur.walk", ILoopType.EDefaultLoopTypes.LOOP));
@@ -60,23 +71,12 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
     }
     //#endregion
 
-    @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "controller", 0, this::predicate));
-        data.addAnimationController(new AnimationController<>(this, "attackController", 0, this::attackPredicate));
-        data.addAnimationController(new AnimationController<>(this, "howlingController", 0, this::howlingPredicate));
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return factory;
-    }
-
+    //#region AI
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAISaccageurAttack(this, 1.0D, false));
-        this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.9D, 32.0F));
+        this.tasks.addTask(1, new EntityAIDalthianAttack(this, 1.0D, false, 20.0F, 60));
+        this.tasks.addTask(2, new EntityAIMoveTowardsTarget(this, 0.5D, 32.0F));
         this.tasks.addTask(2, new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(3, new EntityAIWanderAvoidWater(this, 1.0D));
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
@@ -85,10 +85,12 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
     }
 
     protected void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false, new Class[0]));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
+    //#endregion
 
+    //#region Attributes & Attack
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
@@ -98,7 +100,6 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(60.0D);
     }
 
-    // Apply knockback 1 to the target
     @Override
     public boolean attackEntityAsMob(net.minecraft.entity.Entity entityIn) {
         if (super.attackEntityAsMob(entityIn)) {
@@ -109,6 +110,7 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
         }
         return false;
     }
+    //#endregion
 
     @Override
     public void tick() {

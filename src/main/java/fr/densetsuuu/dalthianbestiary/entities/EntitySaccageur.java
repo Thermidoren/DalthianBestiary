@@ -1,6 +1,8 @@
 package fr.densetsuuu.dalthianbestiary.entities;
 
 import fr.densetsuuu.dalthianbestiary.entities.ai.EntityAIDalthianAttack;
+import fr.densetsuuu.dalthianbestiary.entities.ai.saccageur.EntityAISaccageurNearestAttackablePlayer;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.*;
@@ -19,12 +21,20 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimationTickable {
 
-    private boolean isHowlingInProgress = false;
+    private boolean isHowling = false;
 
     private final AnimationFactory factory = new AnimationFactory(this);
     public EntitySaccageur(World worldIn) {
         super(worldIn);
         this.setSize(2F, 3F);
+    }
+
+    public boolean isHowling() {
+        return isHowling;
+    }
+
+    public void setHowling(boolean howling) {
+        isHowling = howling;
     }
 
     //#region Geckolib
@@ -62,10 +72,10 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
     }
 
     private PlayState howlingPredicate(AnimationEvent<EntitySaccageur> entitySaccageurAnimationEvent) {
-        if (this.isHowlingInProgress && entitySaccageurAnimationEvent.getController().getAnimationState().equals(AnimationState.Stopped)) {
+        if (this.isHowling && entitySaccageurAnimationEvent.getController().getAnimationState().equals(AnimationState.Stopped)) {
             entitySaccageurAnimationEvent.getController().markNeedsReload();
             entitySaccageurAnimationEvent.getController().setAnimation(new AnimationBuilder().addAnimation("animation.saccageur.hurle", ILoopType.EDefaultLoopTypes.PLAY_ONCE));
-            this.isHowlingInProgress = false;
+            this.isHowling = false;
         }
         return PlayState.CONTINUE;
     }
@@ -85,19 +95,21 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
     }
 
     protected void applyEntityAI() {
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(1, new EntityAISaccageurNearestAttackablePlayer(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, false));
+
     }
     //#endregion
 
-    //#region Attributes & Attack
+    //#region Attributes & Attac
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.20D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(75.0D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(60.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.5D);
     }
 
     @Override
@@ -121,4 +133,6 @@ public class EntitySaccageur extends EntityMob implements IAnimatable, IAnimatio
     public int tickTimer() {
         return ticksExisted;
     }
+
+
 }

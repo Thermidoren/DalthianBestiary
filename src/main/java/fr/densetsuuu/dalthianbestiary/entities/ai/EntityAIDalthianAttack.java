@@ -27,9 +27,7 @@ public class EntityAIDalthianAttack extends EntityAIAttackMelee {
     protected void checkAndPerformAttack(EntityLivingBase p_190102_1_, double p_190102_2_) {
         double reach = this.getAttackReachSqr(p_190102_1_);
         if (p_190102_2_ <= reach && this.attackAnimationDelay <= 0) {
-            this.attackTick = this.ATTACK_INTERVAL;
-            this.isAttacking = false;
-            this.attackAnimationDelay = this.ATTACK_ANIMATION_TICKS;
+            resetAttack();
             this.attacker.attackEntityAsMob(p_190102_1_);
             return;
         }
@@ -39,10 +37,19 @@ public class EntityAIDalthianAttack extends EntityAIAttackMelee {
         }
     }
 
+    private void resetAttack() {
+        this.attackTick = this.ATTACK_INTERVAL;
+        this.isAttacking = false;
+        this.attackAnimationDelay = this.ATTACK_ANIMATION_TICKS;
+    }
+
     @Override
     public void updateTask() {
         if (this.isAttacking) {
-            this.attackAnimationDelay = Math.max(0, this.attackAnimationDelay - 1);
+            this.attackAnimationDelay = Math.max(-2, this.attackAnimationDelay - 1);
+            if (this.attackAnimationDelay == -2) {
+                resetAttack();
+            }
         }
         super.updateTask();
     }

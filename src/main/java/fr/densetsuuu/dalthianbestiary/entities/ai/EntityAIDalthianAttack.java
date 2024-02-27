@@ -8,7 +8,7 @@ import net.minecraft.entity.ai.EntityAIAttackMelee;
 public class EntityAIDalthianAttack extends EntityAIAttackMelee {
     private final int ATTACK_INTERVAL;
     private final double ATTACK_REACH;
-    private final int ATTACK_ANIMATION_TICKS = 10;
+    private final int ATTACK_ANIMATION_TICKS = 5;
     private boolean isAttacking = false;
     private int attackAnimationDelay = ATTACK_ANIMATION_TICKS;
 

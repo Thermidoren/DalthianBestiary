@@ -1,8 +1,10 @@
 package fr.densetsuuu.dalthianbestiary.util.handlers;
 
 import fr.densetsuuu.dalthianbestiary.entities.EntitySaccageur;
+import fr.densetsuuu.dalthianbestiary.init.SoundsRegistry;
 import fr.densetsuuu.dalthianbestiary.util.Resource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -30,5 +32,14 @@ public class RegistryHandler {
                         .build()
         );
         LOGGER.debug("Registered entities");
+    }
+
+    @SuppressWarnings("unused")
+    @SubscribeEvent
+    public static void onSoundRegister(RegistryEvent.Register<SoundEvent> event) {
+        event.getRegistry().registerAll(
+                SoundsRegistry.SACCAGEUR_HOWLING
+        );
+        LOGGER.debug("Registered sounds events");
     }
 }

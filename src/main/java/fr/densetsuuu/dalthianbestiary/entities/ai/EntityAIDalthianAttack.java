@@ -1,5 +1,6 @@
 package fr.densetsuuu.dalthianbestiary.entities.ai;
 
+import fr.densetsuuu.dalthianbestiary.entities.EntitySaccageur;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
@@ -10,7 +11,6 @@ public class EntityAIDalthianAttack extends EntityAIAttackMelee {
     private final int ATTACK_ANIMATION_TICKS = 10;
     private boolean isAttacking = false;
     private int attackAnimationDelay = ATTACK_ANIMATION_TICKS;
-
 
     public EntityAIDalthianAttack(EntityCreature creature, double speedIn, boolean useLongMemory, double attackReach, int attackCooldown) {
         super(creature, speedIn, useLongMemory);

@@ -1,0 +1,17 @@
+{
+  "saccageur_howling": {
+    "category": "entity",
+    "subtitle": "dalthianbestiary.subtitle.saccageurHowling",
+    "sounds": [ "dalthianbestiary:saccageur_howling" ]
+  },
+  "saccageur_ambient": {
+    "category": "entity",
+    "subtitle": "dalthianbestiary.subtitle.saccageurAmbiant",
+    "sounds": [ "dalthianbestiary:saccageur_ambient" ]
+  },
+  "saccageur_attack": {
+    "category": "entity",
+    "subtitle": "dalthianbestiary.subtitle.saccageurAttack",
+    "sounds": [ "dalthianbestiary:saccageur_attack" ]
+  }
+}

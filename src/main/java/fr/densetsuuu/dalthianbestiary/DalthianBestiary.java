@@ -7,6 +7,8 @@ import fr.densetsuuu.dalthianbestiary.renderer.SaccageurGeoRenderer;
 import fr.densetsuuu.dalthianbestiary.util.ModConfigManager;
 import fr.densetsuuu.dalthianbestiary.util.Resource;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -27,7 +29,7 @@ public class DalthianBestiary {
     public static DalthianBestiary instance;
     @SidedProxy(clientSide = Resource.CLIENT_PROXY_CLASS, serverSide = Resource.COMMON_PROXY_CLASS)
     public static CommonProxy proxy;
-    private static Logger logger; // used to print messages to our console output
+    public static Logger logger; // used to print messages to our console output
 
     /** This is the first initialization event. Register tile entities here.
      * The registry events below will have fired prior to entry to this method.*/
@@ -40,9 +42,7 @@ public class DalthianBestiary {
     /** This is the second initialization event. Register custom recipes*/
     @EventHandler
     public static void init(FMLInitializationEvent event) {
-        // Initializing all Recipes
         logger.info("saving / loading mod configuration");
-        // we need to call our function here, in order to execute the save / load
         ModConfigManager.WorldGenerationConfig(event);
     }
 
